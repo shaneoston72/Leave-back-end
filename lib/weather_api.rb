@@ -18,6 +18,7 @@ class WeatherApi
                                "?q=#{ @options[:city_name] }" +
                                "&appid=#{ @options[:api_key] }").parsed_response
     convert_json_to_hash if @raw_json.class == String
+    @raw_json
   end
 
   def show_desc_and_temp
@@ -43,5 +44,7 @@ class WeatherApi
   def extract_temperature
     (@raw_json['main']['temp'].to_i - 273.15).round(1)
   end
-
 end
+
+weather = WeatherApi.new
+p weather.grab_json

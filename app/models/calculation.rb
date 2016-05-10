@@ -46,6 +46,4 @@ class Calculation
     { hours: arrival_time[:hours] - travel_time[:hours],
       minutes: (arrival_time[:minutes] - travel_time[:minutes]).abs }
   end
-
-
 end

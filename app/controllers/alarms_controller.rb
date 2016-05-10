@@ -66,6 +66,8 @@ class AlarmsController < ApplicationController
       from_station = @alarm.from_station.to_i
       to_station = @alarm.to_station.to_i
       travel = TravelApi.new(from_station, to_station).grab_json
+      p '***************TRAVEL***************'
+      p travel
       @duration = travel['journeys'][0]['duration']
     end
 

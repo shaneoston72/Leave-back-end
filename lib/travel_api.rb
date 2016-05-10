@@ -15,6 +15,7 @@ class TravelApi
   def grab_json
     @raw_json = self.class.get(@base_uri).parsed_response
     convert_json_to_hash if @raw_json.class == String
+    @raw_json
   end
 
   def show_duration
