@@ -14,18 +14,18 @@ describe WeatherApi do
     end
   end
 
-  # describe '#show_desc_and_temp' do
-  #   it 'returns description and temp' do
-  #     desc_and_temp = weather_api_call.show_desc_and_temp
-  #     expect(desc_and_temp.include?('description' && 'temp')).to eq(true)
-  #   end
-  # end
-  #
-  # describe '#show_id' do
-  #   it 'returns id' do
-  #     id = weather_api_call.show_id
-  #     expect(id[:id].class).to eq(Fixnum)
-  #   end
-  # end
+  describe '#show_desc_and_temp' do
+    it 'returns description and temp' do
+      desc_and_temp = weather_api_call.show_desc_and_temp
+      expect(desc_and_temp.include?('description' && 'temp')).to eq(true)
+    end
+  end
+  
+  describe '#show_id' do
+    it 'returns id' do
+      id = weather_api_call.show_id
+      expect(id[:id].class).to eq(Fixnum)
+    end
+  end
 
 end

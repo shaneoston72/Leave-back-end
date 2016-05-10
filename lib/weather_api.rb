@@ -17,7 +17,31 @@ class WeatherApi
     @raw_json = self.class.get(@base_uri +
                                "?q=#{ @options[:city_name] }" +
                                "&appid=#{ @options[:api_key] }").parsed_response
-    @raw_json = JSON(@raw_json) if @raw_json.class == String
+    convert_json_to_hash if @raw_json.class == String
+  end
+
+  def show_desc_and_temp
+    desc = extract_description
+    temp = extract_temperature
+    { description: desc, temperature: temp }.to_json
+  end
+
+  def show_id
+    { id: @raw_json['weather'][0]['id'] }
+  end
+
+  private
+
+  def convert_json_to_hash
+    @raw_json = JSON(@raw_json)
+  end
+
+  def extract_description
+    @raw_json['weather'][0]['description']
+  end
+
+  def extract_temperature
+    (@raw_json['main']['temp'].to_i - 273.15).round(1)
   end
 
 end
