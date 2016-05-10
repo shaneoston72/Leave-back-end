@@ -12,7 +12,6 @@ class AlarmsController < ApplicationController
   def index
     @alarm = Alarm.last
     calculate_time_to_leave
-    p @time_to_leave
     render json: @time_to_leave
   end
 
@@ -38,7 +37,6 @@ class AlarmsController < ApplicationController
   # PATCH/PUT /alarms/1.json
   def update
     @alarm = Alarm.find(params[:id])
-
     if @alarm.update(alarm_params)
       head :no_content
     else
@@ -50,7 +48,6 @@ class AlarmsController < ApplicationController
   # DELETE /alarms/1.json
   def destroy
     @alarm.destroy
-
     head :no_content
   end
 
