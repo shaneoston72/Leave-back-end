@@ -13,6 +13,7 @@ class AlarmsController < ApplicationController
   # GET /alarms/1.json
   def show
     render json: @alarm
+
   end
 
   # POST /alarms
