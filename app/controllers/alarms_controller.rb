@@ -5,7 +5,6 @@ class AlarmsController < ApplicationController
   # GET /alarms.json
   def index
     @alarms = Alarm.all
-
     render json: @alarms
   end
 
@@ -18,9 +17,7 @@ class AlarmsController < ApplicationController
   # POST /alarms
   # POST /alarms.json
   def create
-    p alarm_params
     @alarm = Alarm.new(alarm_params)
-
     if @alarm.save
       render json: @alarm, status: :created, location: @alarm
     else
@@ -32,7 +29,6 @@ class AlarmsController < ApplicationController
   # PATCH/PUT /alarms/1.json
   def update
     @alarm = Alarm.find(params[:id])
-
     if @alarm.update(alarm_params)
       head :no_content
     else
@@ -44,7 +40,6 @@ class AlarmsController < ApplicationController
   # DELETE /alarms/1.json
   def destroy
     @alarm.destroy
-
     head :no_content
   end
 
