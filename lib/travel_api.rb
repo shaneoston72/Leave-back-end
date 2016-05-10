@@ -17,10 +17,23 @@ class TravelApi
     convert_json_to_hash if @raw_json.class == String
   end
 
+  def show_duration
+    @raw_json['journeys'][0]['duration']
+  end
+
+  def show_line_statuses
+    extract_lines_info
+  end
+
   private
 
   def convert_json_to_hash
     @raw_json = JSON(@raw_json)
   end
 
+  def extract_lines_info
+    statuses = {}
+    @raw_json['lines'].each { |line| statuses[line["name"]] = line["lineStatuses"][0]["statusSeverity"]}
+    statuses
+  end
 end

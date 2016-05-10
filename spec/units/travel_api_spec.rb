@@ -14,18 +14,18 @@ describe TravelApi do
     end
   end
 
-  # describe '#show_duration' do
-  #   it 'displays the duration of the travel time' do
-  #     duration = travel_api_call.show_duration
-  #     expect(duration.class).to eq (Fixnum)
-  #   end
-  # end
-  #
-  # describe '#show_line_statuses' do
-  #   it 'displays the statuses of lines used in the journey' do
-  #     line_statuses = travel_api_call.show_line_statuses
-  #     expect(line_statuses).to eq ({ "District" => 10 })
-  #   end
-  # end
+  describe '#show_duration' do
+    it 'displays the duration of the travel time' do
+      duration = travel_api.show_duration
+      expect(duration.class).to eq (Fixnum)
+    end
+  end
+
+  describe '#show_line_statuses' do
+    it 'displays the statuses of lines used in the journey' do
+      line_statuses = travel_api.show_line_statuses
+      expect(line_statuses).to eq ({ "District" => 10 })
+    end
+  end
 
 end
