@@ -12,7 +12,7 @@ group :test do
   gem 'database_cleaner'
   gem 'shoulda'
   gem 'shoulda-matchers'
-  gem 'factory_girl'
+  gem "factory_girl_rails", "~> 4.0"
   gem 'webmock'
 end
 

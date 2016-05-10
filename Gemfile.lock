@@ -49,6 +49,9 @@ GEM
     erubis (2.7.0)
     factory_girl (4.7.0)
       activesupport (>= 3.0.0)
+    factory_girl_rails (4.7.0)
+      factory_girl (~> 4.7.0)
+      railties (>= 3.0.0)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
     hashdiff (0.3.0)
@@ -146,7 +149,7 @@ PLATFORMS
 DEPENDENCIES
   active_model_serializers
   database_cleaner
-  factory_girl
+  factory_girl_rails (~> 4.0)
   pg
   rails (= 4.2.6)
   rails-api
@@ -158,4 +161,4 @@ DEPENDENCIES
   webmock
 
 BUNDLED WITH
-   1.12.2
+   1.12.3
