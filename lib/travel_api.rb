@@ -1,0 +1,26 @@
+require 'httparty'
+require 'dotenv'
+require 'json'
+Dotenv.load
+
+class TravelApi
+
+  include HTTParty
+
+  def initialize(from, to)
+    @base_uri = "#{ENV['TFL_BASE_URL']}#{from.to_s}/to/#{to.to_s}"
+    @raw_json = ''
+  end
+
+  def grab_json
+    @raw_json = self.class.get(@base_uri).parsed_response
+    convert_json_to_hash if @raw_json.class == String
+  end
+
+  private
+
+  def convert_json_to_hash
+    @raw_json = JSON(@raw_json)
+  end
+
+end
