@@ -1,4 +1,4 @@
-require_relative '../../app/models/old_calculation'
+require_relative '../../app/models/calculation'
 
 describe Calculation do
 

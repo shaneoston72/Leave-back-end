@@ -22,6 +22,7 @@ class AlarmsController < ApplicationController
     @alarm = Alarm.new(alarm_params)
 
     if @alarm.save
+
       render json: @alarm, status: :created, location: @alarm
     else
       render json: @alarm.errors, status: :unprocessable_entity
