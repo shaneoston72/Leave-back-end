@@ -1,20 +1,15 @@
 class Calculation
 
-  def show_time_to_leave(arrival_time, duration, weather)
-    travel_time = reformat(duration + get_delay(weather))
+  def show_time_to_leave(arrival_time, duration, weather_id)
+    travel_time = reformat(duration + get_delay(weather_id))
     update_time_to_leave(arrival_time, travel_time)
   end
 
   private
 
-  def get_delay(weather)
+  def get_delay(weather_id)
     delays = [{code: 8, delay: 0}, {code: 5, delay: 15}, {code: 6, delay: 30}]
-    weather_id = decode_weather_id(weather)
-    delays.select {|pair| pair[:code] == weather_id }[0][:delay]
-  end
-
-  def decode_weather_id(weather)
-    weather[:id] / 100
+    delays.select {|pair| pair[:code] == weather_id/100 }[0][:delay]
   end
 
   def reformat(travel_time)
@@ -30,7 +25,11 @@ class Calculation
     minus_hour(arrival_time) if arrival_time[:minutes] == 0
     updated = arrival_time_minus_travel_time(arrival_time, travel_time)
     add_hour(updated) if updated[:minutes] == 60
-    updated
+    hours = updated[:hours].to_s
+    minutes = updated[:minutes].to_s
+    hours = '0' + hours if hours.length == 1
+    minutes = '0' + minutes if minutes.length == 1
+    time_in_string =  hours + ':' + minutes
   end
 
   def minus_hour(time_hash)

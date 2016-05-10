@@ -4,9 +4,9 @@ describe Calculation do
 
   let(:calculation) { described_class.new }
 
-  let(:sunny_and_cloudy) { { id: 800 } }
-  let(:rainy) { { id: 500 } }
-  let(:snowy) { { id: 600 } }
+  let(:sunny_and_cloudy) { 800  }
+  let(:rainy) { 500 }
+  let(:snowy) { 600 }
 
   let(:arrival_time) { { hours: 9, minutes: 0 } }
   let(:duration) { 30 }
@@ -16,21 +16,21 @@ describe Calculation do
       updated_time = calculation.show_time_to_leave(arrival_time,
                                                     duration,
                                                     sunny_and_cloudy)
-      expect(updated_time).to eq({ hours: 8, minutes: 30 })
+      expect(updated_time).to eq('08:30')
     end
 
     it 'returns time to leave 15min earlier if it is rainy' do
       updated_time = calculation.show_time_to_leave(arrival_time,
                                                     duration,
                                                     rainy)
-      expect(updated_time).to eq({ hours: 8, minutes: 15 })
+      expect(updated_time).to eq('08:15')
     end
 
     it 'returns time to leave 30min earlier if it is snowy' do
       updated_time = calculation.show_time_to_leave(arrival_time,
                                                     duration,
                                                     snowy)
-      expect(updated_time).to eq({ hours: 8, minutes: 00 })
+      expect(updated_time).to eq('08:00')
     end
   end
 end
