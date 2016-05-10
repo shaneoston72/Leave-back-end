@@ -1,3 +1,5 @@
+require_relative '../../lib/station_list'
+
 class StationsController < ApplicationController
 
   def show

@@ -18,6 +18,7 @@ class AlarmsController < ApplicationController
   # POST /alarms
   # POST /alarms.json
   def create
+    p alarm_params
     @alarm = Alarm.new(alarm_params)
 
     if @alarm.save
