@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  from_station: MyString
+  to_station: MyString
+  arrival_time: MyString
+  alarm_offset: MyString
+
+two:
+  from_station: MyString
+  to_station: MyString
+  arrival_time: MyString
+  alarm_offset: MyString
