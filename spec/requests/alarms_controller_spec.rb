@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe "Alarm API" do
+describe "Alarms Controller" do
   it 'sends an alarm info' do
     alarm = create(:alarm)
     get '/alarms'
