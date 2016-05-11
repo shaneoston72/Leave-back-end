@@ -1,7 +1,7 @@
 class Calculation
 
   def show_time_to_leave(arrival_time, duration, weather_id)
-    travel_time = reformat(duration + get_delay(weather_id))
+    p travel_time = reformat(duration + get_delay(weather_id))
     update_time_to_leave(arrival_time, travel_time)
   end
 

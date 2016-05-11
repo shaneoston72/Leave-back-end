@@ -11,10 +11,10 @@ RSpec.configure do |config|
                    "main"    => { "temp": 291.563 }
                  }.to_json
     weather_api_key = ENV['WEATHER_API_KEY']
-    stub_request(:get, "http://api.openweathermap.org/data/2.5/weather?appid=" + weather_api_key + "&q=London")
-      .with(headers: { 'Accept': '*/*',
-                       'Accept-Encoding': 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-                       'User-Agent': 'Ruby' })
+    stub_request(:get, "http://api.openweathermap.org/data/2.5/weather?q=London&appid=" + weather_api_key)
+    .with(headers: { 'Accept': '*/*',
+                     'Accept-Encoding': 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+                     'User-Agent': 'Ruby' })
       .to_return(status: 200,
                  body: mock_body,
                  headers: {})

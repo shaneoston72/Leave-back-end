@@ -7,23 +7,17 @@ require 'json'
 class AlarmsController < ApplicationController
   before_action :set_alarm, only: [:show, :update, :destroy]
 
-  # GET /alarms
-  # GET /alarms.json
   def index
     @alarm = Alarm.last
     calculate_time_to_leave
     render json: @time_to_leave
   end
 
-  # GET /alarms/1
-  # GET /alarms/1.json
   def show
     render json: @alarm
 
   end
 
-  # POST /alarms
-  # POST /alarms.json
   def create
     @alarm = Alarm.new(alarm_params)
     if @alarm.save
@@ -33,8 +27,6 @@ class AlarmsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /alarms/1
-  # PATCH/PUT /alarms/1.json
   def update
     @alarm = Alarm.find(params[:id])
     if @alarm.update(alarm_params)
@@ -44,8 +36,6 @@ class AlarmsController < ApplicationController
     end
   end
 
-  # DELETE /alarms/1
-  # DELETE /alarms/1.json
   def destroy
     @alarm.destroy
     head :no_content
@@ -66,9 +56,7 @@ class AlarmsController < ApplicationController
       from_station = @alarm.from_station.to_i
       to_station = @alarm.to_station.to_i
       travel = TravelApi.new(from_station, to_station).grab_json
-      p '***************TRAVEL***************'
-      p travel
-      @duration = travel['journeys'][0]['duration']
+      p @duration = travel['journeys'][0]['duration']
     end
 
     def calculate_time_to_leave

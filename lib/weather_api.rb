@@ -45,6 +45,3 @@ class WeatherApi
     (@raw_json['main']['temp'].to_i - 273.15).round(1)
   end
 end
-
-weather = WeatherApi.new
-p weather.grab_json
