@@ -15,7 +15,6 @@ class AlarmsController < ApplicationController
 
   def show
     render json: @alarm
-
   end
 
   def create
@@ -56,7 +55,7 @@ class AlarmsController < ApplicationController
       from_station = @alarm.from_station.to_i
       to_station = @alarm.to_station.to_i
       travel = TravelApi.new(from_station, to_station).grab_json
-      p @duration = travel['journeys'][0]['duration']
+      @duration = travel['journeys'][0]['duration']
     end
 
     def calculate_time_to_leave
