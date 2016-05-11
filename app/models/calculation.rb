@@ -19,7 +19,7 @@ class Calculation
 
   def update_time_to_leave(arrival_time_in_minutes, travel_time)
     time_to_leave_in_minutes = arrival_time_in_minutes - travel_time
-    convert_minutes_to_time (time_to_leave_in_minutes)
+    convert_minutes_to_time(time_to_leave_in_minutes)
   end
 
   def convert_minutes_to_time(minutes)
