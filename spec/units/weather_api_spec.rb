@@ -2,10 +2,10 @@ require_relative '../../lib/weather_api'
 
 describe WeatherApi do
 
-  let(:weather_api_call) { described_class.new }
+  let(:weather_api) { described_class.new }
 
   before(:each) do
-    @raw_json = weather_api_call.grab_json
+    @raw_json = weather_api.grab_json
   end
 
   describe '#grab_json' do
@@ -16,14 +16,14 @@ describe WeatherApi do
 
   describe '#show_desc_and_temp' do
     it 'returns description and temp' do
-      desc_and_temp = weather_api_call.show_desc_and_temp
+      desc_and_temp = weather_api.show_desc_and_temp
       expect(desc_and_temp.include?('description' && 'temp')).to eq(true)
     end
   end
-  
+
   describe '#show_id' do
     it 'returns id' do
-      id = weather_api_call.show_id
+      id = weather_api.show_id
       expect(id[:id].class).to eq(Fixnum)
     end
   end
