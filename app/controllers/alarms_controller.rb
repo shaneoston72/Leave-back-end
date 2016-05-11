@@ -42,35 +42,35 @@ class AlarmsController < ApplicationController
 
   private
 
-    def get_weather_id
-      @weather_id = WeatherApi.new.grab_json['weather'][0]['id']
-    end
+  def get_weather_id
+    @weather_id = WeatherApi.new.grab_json['weather'][0]['id']
+  end
 
-    def format_arrival_time
-      @arrival_time = { hours: @alarm.arrival_time[0,2].to_i,
-                         minutes: @alarm.arrival_time[3,2].to_i}
-    end
+  def format_arrival_time
+    @arrival_time = { hours: @alarm.arrival_time[0,2].to_i,
+                       minutes: @alarm.arrival_time[3,2].to_i}
+  end
 
-    def get_duration
-      from_station = @alarm.from_station.to_i
-      to_station = @alarm.to_station.to_i
-      travel = TravelApi.new(from_station, to_station).grab_json
-      @duration = travel['journeys'][0]['duration']
-    end
+  def get_duration
+    from_station = @alarm.from_station.to_i
+    to_station = @alarm.to_station.to_i
+    travel = TravelApi.new(from_station, to_station).grab_json
+    @duration = travel['journeys'][0]['duration']
+  end
 
-    def calculate_time_to_leave
-      get_duration
-      get_weather_id
-      format_arrival_time
-      calculation = Calculation.new
-      @time_to_leave = {time_to_leave: calculation.show_time_to_leave(@arrival_time, @duration, @weather_id)}.to_json
-    end
+  def calculate_time_to_leave
+    get_duration
+    get_weather_id
+    format_arrival_time
+    calculation = Calculation.new
+    @time_to_leave = {time_to_leave: calculation.show_time_to_leave(@arrival_time, @duration, @weather_id)}.to_json
+  end
 
-    def set_alarm
-      @alarm = Alarm.find(params[:id])
-    end
+  def set_alarm
+    @alarm = Alarm.find(params[:id])
+  end
 
-    def alarm_params
-      params.require(:alarm).permit(:from_station, :to_station, :arrival_time, :alarm_offset)
-    end
+  def alarm_params
+    params.require(:alarm).permit(:from_station, :to_station, :arrival_time, :alarm_offset)
+  end
 end

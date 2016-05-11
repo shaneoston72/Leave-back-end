@@ -3,24 +3,17 @@ require_relative '../../lib/weather_api'
 class WeathersController < ApplicationController
   before_action :set_weather, only: [:show, :update, :destroy]
 
-  # GET /weathers
-  # GET /weathers.json
   def index
     @weather = get_weather
     render json: @weather
   end
 
-  # GET /weathers/1
-  # GET /weathers/1.json
   def show
     render json: @weather
   end
 
-  # POST /weathers
-  # POST /weathers.json
   def create
     @weather = Weather.new(weather_params)
-
     if @weather.save
       render json: @weather, status: :created, location: @weather
     else
@@ -28,11 +21,8 @@ class WeathersController < ApplicationController
     end
   end
 
-  # PATCH/PUT /weathers/1
-  # PATCH/PUT /weathers/1.json
   def update
     @weather = Weather.find(params[:id])
-
     if @weather.update(weather_params)
       head :no_content
     else
@@ -40,11 +30,8 @@ class WeathersController < ApplicationController
     end
   end
 
-  # DELETE /weathers/1
-  # DELETE /weathers/1.json
   def destroy
     @weather.destroy
-
     head :no_content
   end
 
