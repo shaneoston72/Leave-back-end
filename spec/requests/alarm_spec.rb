@@ -6,6 +6,6 @@ describe "Alarm API" do
     get '/alarms'
     json = JSON.parse(response.body)
     expect(response).to be_success
-    expect(json[0]['alarm_offset']).to eq('30')
+    expect(json.include?('time_to_leave')).to eq true
   end
 end
