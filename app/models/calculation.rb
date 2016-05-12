@@ -22,9 +22,9 @@ class Calculation
     time[:hours] * 60 + time[:minutes]
   end
 
-  def get_delay(weather_id)
-    delays = [{code: 8, delay: 0}, {code: 5, delay: 15}, {code: 6, delay: 30}]
-    delays.select {|pair| pair[:code] == weather_id/100 }[0][:delay]
+  def get_delay(weather_id, weather_offset_class = WeatherOffset)
+    weather_offset = weather_offset_class.new
+    weather_offset.calculate_delay(weather_id)  
   end
 
   def update_time_to_leave(arrival_time, travel_time)
