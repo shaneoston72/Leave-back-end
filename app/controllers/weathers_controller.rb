@@ -8,33 +8,6 @@ class WeathersController < ApplicationController
     render json: @weather
   end
 
-  def show
-    render json: @weather
-  end
-
-  def create
-    @weather = Weather.new(weather_params)
-    if @weather.save
-      render json: @weather, status: :created, location: @weather
-    else
-      render json: @weather.errors, status: :unprocessable_entity
-    end
-  end
-
-  def update
-    @weather = Weather.find(params[:id])
-    if @weather.update(weather_params)
-      head :no_content
-    else
-      render json: @weather.errors, status: :unprocessable_entity
-    end
-  end
-
-  def destroy
-    @weather.destroy
-    head :no_content
-  end
-
   private
 
   def get_weather
