@@ -2,6 +2,8 @@ require 'api_connection'
 
 class Calculation
 
+  PREP_TIME = 15
+
   attr_reader :arrival_time, :from_station, :to_station
 
   def initialize(arrival_time, from_station, to_station)
@@ -12,7 +14,7 @@ class Calculation
 
   def show_time_to_leave(arrival_time, from_station, to_station)
     make_api_call(from_station, to_station)
-    travel_time = @travel_duration + get_delay(@weather_id)
+    travel_time = @travel_duration + get_delay(@weather_id) + PREP_TIME
     update_time_to_leave(arrival_time, travel_time)
   end
 
@@ -24,7 +26,7 @@ class Calculation
 
   def get_delay(weather_id, weather_offset_class = WeatherOffset)
     weather_offset = weather_offset_class.new
-    weather_offset.calculate_delay(weather_id)  
+    weather_offset.calculate_delay(weather_id)
   end
 
   def update_time_to_leave(arrival_time, travel_time)

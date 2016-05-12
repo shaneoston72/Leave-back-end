@@ -33,7 +33,7 @@ describe Calculation do
       updated_time = calculation.show_time_to_leave(arrival_time,
                                                     from_station,
                                                     to_station)
-      expect(updated_time).to eq('08:28')
+      expect(updated_time).to eq('08:13')
     end
   end
 
