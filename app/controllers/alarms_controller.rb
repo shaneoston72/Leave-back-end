@@ -1,5 +1,3 @@
-require_relative '../../lib/weather_api'
-require_relative '../../lib/travel_api'
 require_relative '../models/calculation'
 require 'json'
 
@@ -26,28 +24,25 @@ class AlarmsController < ApplicationController
 
   private
 
-  def calculate_time_to_leave
-    get_duration
-    get_weather_id
+  def calculate_time_to_leave(calculation_class = Calculation)
+    prepare_time_and_station_data
+    calculation    = calculation_class.new(@arrival_time, @from_station, @to_station)
+    @time_to_leave = { time_to_leave: calculation.show_time_to_leave }.to_json
+  end
+
+  def prepare_time_and_station_data
     format_arrival_time
-    calculation    = Calculation.new
-    @time_to_leave = { time_to_leave: calculation.show_time_to_leave(@arrival_time, @duration, @weather_id) }.to_json
-  end
-
-  def get_duration
-    from_station = @alarm.from_station.to_i
-    to_station   = @alarm.to_station.to_i
-    travel       = TravelApi.new(from_station, to_station).grab_json
-    @duration    = travel['journeys'][0]['duration']
-  end
-
-  def get_weather_id
-    @weather_id = WeatherApi.new.grab_json['weather'][0]['id']
+    extract_station_code
   end
 
   def format_arrival_time
     @arrival_time = { hours: @alarm.arrival_time[0,2].to_i,
                       minutes: @alarm.arrival_time[3,2].to_i }
+  end
+
+  def extract_station_code
+    @from_station = @alarm.from_station.to_i
+    @to_station   = @alarm.to_station.to_i
   end
 
   def alarm_params
