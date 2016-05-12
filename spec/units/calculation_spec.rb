@@ -5,14 +5,11 @@ describe Calculation do
   let(:arrival_time) { { hours: 9, minutes: 0 } }
   let(:from_station) { 1000004 }
   let(:to_station) { 1000241 }
+  let(:api_connection_class) { double(:api_connection_class, new: api_connection) }
+  let(:api_connection) { double(:api_connection) }
 
   let(:calculation) { described_class.new(arrival_time, from_station, to_station) }
 
-  let(:sunny_and_cloudy) { 800  }
-  let(:rainy) { 500 }
-  let(:snowy) { 600 }
-
-  let(:duration) { 30 }
 
   describe '#initialize' do
     it 'instantiates a calculation object with arrival time' do
@@ -26,26 +23,33 @@ describe Calculation do
     end
   end
 
+
   describe '#show_time_to_leave' do
+
+    it 'calls on make_api_call' do
+      calculation
+    end
+
     it 'returns (arrival time) - (travel result) for sunny/cloudy weather' do
       updated_time = calculation.show_time_to_leave(arrival_time,
-                                                    duration,
-                                                    sunny_and_cloudy)
-      expect(updated_time).to eq('08:30')
+                                                    from_station,
+                                                    to_station)
+      expect(updated_time).to eq('08:28')
     end
 
-    it 'returns time to leave 15min earlier if it is rainy' do
-      updated_time = calculation.show_time_to_leave(arrival_time,
-                                                    duration,
-                                                    rainy)
-      expect(updated_time).to eq('08:15')
-    end
-
-    it 'returns time to leave 30min earlier if it is snowy' do
-      updated_time = calculation.show_time_to_leave(arrival_time,
-                                                    duration,
-                                                    snowy)
-      expect(updated_time).to eq('08:00')
-    end
+    # it 'returns time to leave 15min earlier if it is rainy' do
+    #   updated_time = calculation.show_time_to_leave(arrival_time,
+    #                                                 from_station,
+    #                                                 to_station)
+    #   expect(updated_time).to eq('08:15')
+    # end
+    #
+    # it 'returns time to leave 30min earlier if it is snowy' do
+    #   updated_time = calculation.show_time_to_leave(arrival_time,
+    #                                                 from_station,
+    #                                                 to_station)
+    #   expect(updated_time).to eq('08:00')
+    # end
   end
+
 end
