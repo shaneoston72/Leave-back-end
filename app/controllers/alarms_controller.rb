@@ -7,37 +7,21 @@ require 'json'
 class AlarmsController < ApplicationController
   before_action :set_alarm, only: [:show, :update, :destroy]
 
+  attr_accessor :alarm
+
   def index
     @alarm = Alarm.last
     calculate_time_to_leave
     render json: @time_to_leave
   end
 
-  def show
-    render json: @alarm
-  end
-
   def create
-    @alarm = Alarm.new(alarm_params)
-    if @alarm.save
-      render json: @alarm, status: :created, location: @alarm
+    alarm = Alarm.new(alarm_params)
+    if alarm.save
+      render json: alarm, status: :created, location: alarm
     else
-      render json: @alarm.errors, status: :unprocessable_entity
+      render json: alarm.errors, status: :unprocessable_entity
     end
-  end
-
-  def update
-    @alarm = Alarm.find(params[:id])
-    if @alarm.update(alarm_params)
-      head :no_content
-    else
-      render json: @alarm.errors, status: :unprocessable_entity
-    end
-  end
-
-  def destroy
-    @alarm.destroy
-    head :no_content
   end
 
   private
