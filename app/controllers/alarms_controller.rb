@@ -46,7 +46,7 @@ class AlarmsController < ApplicationController
   end
 
   def format_arrival_time
-    @arrival_time = { hours  : @alarm.arrival_time[0,2].to_i,
+    @arrival_time = { hours: @alarm.arrival_time[0,2].to_i,
                       minutes: @alarm.arrival_time[3,2].to_i }
   end
 

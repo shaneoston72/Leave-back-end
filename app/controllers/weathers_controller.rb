@@ -11,22 +11,8 @@ class WeathersController < ApplicationController
   private
 
   def get_weather
-    raw_weather_info = WeatherApi.new.grab_json
-    create_weather_json(raw_weather_info)
+    weather = WeatherApi.new
+    weather.grab_json
+    weather.show_desc_and_temp
   end
-
-  def create_weather_json(raw_json)
-    description = get_description(raw_json)
-    temperature = get_temperature(raw_json)
-    { description: description, temperature: temperature }.to_json
-  end
-
-  def get_description(raw_json)
-    raw_json['weather'][0]['description']
-  end
-
-  def get_temperature(raw_json)
-    (raw_json['main']['temp'].to_i - 273.15).round(1)
-  end
-
 end
