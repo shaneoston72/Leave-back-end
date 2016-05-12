@@ -50,10 +50,6 @@ class AlarmsController < ApplicationController
     @time_to_leave = {time_to_leave: calculation.show_time_to_leave(@arrival_time, @duration, @weather_id)}.to_json
   end
 
-  def set_alarm
-    @alarm = Alarm.find(params[:id])
-  end
-
   def alarm_params
     params.require(:alarm).permit(:from_station, :to_station, :arrival_time, :alarm_offset)
   end
