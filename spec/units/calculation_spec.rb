@@ -25,7 +25,6 @@ describe Calculation do
 
 
   describe '#show_time_to_leave' do
-
     it 'calls on make_api_call' do
       calculation
     end
@@ -36,20 +35,6 @@ describe Calculation do
                                                     to_station)
       expect(updated_time).to eq('08:28')
     end
-
-    # it 'returns time to leave 15min earlier if it is rainy' do
-    #   updated_time = calculation.show_time_to_leave(arrival_time,
-    #                                                 from_station,
-    #                                                 to_station)
-    #   expect(updated_time).to eq('08:15')
-    # end
-    #
-    # it 'returns time to leave 30min earlier if it is snowy' do
-    #   updated_time = calculation.show_time_to_leave(arrival_time,
-    #                                                 from_station,
-    #                                                 to_station)
-    #   expect(updated_time).to eq('08:00')
-    # end
   end
 
 end

@@ -45,9 +45,7 @@ class Calculation
     "#{hours}:#{minutes}"
   end
 
-  def make_api_call(from_station,
-                    to_station,
-                    api_connection_class = ApiConnection)
+  def make_api_call(from_station, to_station, api_connection_class = ApiConnection)
     api_connection = api_connection_class.new
     @weather_id = api_connection.get_weather_id
     @travel_duration = api_connection.get_travel_duration(from_station, to_station)

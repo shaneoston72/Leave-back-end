@@ -10,8 +10,6 @@ class ApiConnection
   def get_travel_duration(from_station,
                           to_station,
                           travel_api_class = TravelApi)
-    # from_station = @alarm.from_station.to_i
-    # to_station   = @alarm.to_station.to_i
     travel       = travel_api_class.new(from_station, to_station).grab_json
     @duration    = travel['journeys'][0]['duration']
   end
