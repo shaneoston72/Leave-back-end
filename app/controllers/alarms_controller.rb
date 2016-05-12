@@ -27,7 +27,7 @@ class AlarmsController < ApplicationController
   def calculate_time_to_leave(calculation_class = Calculation)
     prepare_time_and_station_data
     calculation    = calculation_class.new(@arrival_time, @from_station, @to_station)
-    @time_to_leave = { time_to_leave: calculation.show_time_to_leave(@arrival_time, @from_station, @to_station) }.to_json
+    @time_to_leave = { time_to_leave: calculation.show_time_to_leave }.to_json
   end
 
   def prepare_time_and_station_data

@@ -12,7 +12,7 @@ class Calculation
     @to_station = to_station
   end
 
-  def show_time_to_leave(arrival_time, from_station, to_station)
+  def show_time_to_leave
     make_api_call(from_station, to_station)
     travel_time = @travel_duration + get_delay(@weather_id) + PREP_TIME
     update_time_to_leave(arrival_time, travel_time)

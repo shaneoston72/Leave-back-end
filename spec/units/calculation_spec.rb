@@ -30,9 +30,7 @@ describe Calculation do
     end
 
     it 'returns (arrival time) - (travel result) for sunny/cloudy weather' do
-      updated_time = calculation.show_time_to_leave(arrival_time,
-                                                    from_station,
-                                                    to_station)
+      updated_time = calculation.show_time_to_leave
       expect(updated_time).to eq('08:13')
     end
   end
