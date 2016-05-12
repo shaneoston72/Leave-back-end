@@ -1,6 +1,21 @@
+require 'api_connection'
+
 class Calculation
 
-  def show_time_to_leave(arrival_time, duration, weather_id)
+  attr_reader :arrival_time, :from_station, :to_station
+
+  def initialize(arrival_time, from_station, to_station)
+    @arrival_time = arrival_time
+    @from_station = from_station
+    @to_station = to_station
+  end
+
+  def show_time_to_leave(arrival_time,
+                         from_station,
+                         to_station,
+                         api_connection_class = ApiConnection)
+    api_connection = ApiConnection.new
+
     arrival_time_in_minutes = convert_time_to_minutes(arrival_time)
     travel_time = duration + get_delay(weather_id)
     update_time_to_leave(arrival_time_in_minutes, travel_time)
