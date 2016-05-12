@@ -27,10 +27,6 @@ class WeatherApi
     { description: desc, temperature: temp }.to_json
   end
 
-  def show_id
-    { id: @raw_json['weather'][0]['id'] }
-  end
-
   private
 
   def convert_json_to_hash

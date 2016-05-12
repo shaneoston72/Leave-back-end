@@ -21,11 +21,4 @@ describe WeatherApi do
     end
   end
 
-  describe '#show_id' do
-    it 'returns id' do
-      id = weather_api.show_id
-      expect(id[:id].class).to eq(Fixnum)
-    end
-  end
-
 end

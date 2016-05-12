@@ -6,5 +6,4 @@ FactoryGirl.define do
     arrival_time '14:30'
     alarm_offset '0'
   end
-
 end
